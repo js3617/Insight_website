@@ -5,9 +5,10 @@
   overflow-y: auto;
 }
 
-.App::-webkit-scrollbar {
+/* 스크롤 바 */
+/* .App::-webkit-scrollbar {
   display: none;
-}
+} */
 
 body {
   margin: 0;
