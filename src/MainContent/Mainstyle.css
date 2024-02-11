@@ -1,3 +1,4 @@
+
 .toptitle{
     align-items: center;
     text-align: center;
@@ -134,11 +135,12 @@
     margin: 0 0 60px 0;
     }
     
-    .department-button {
-    background-color: rgba(0, 0, 0, 0);
+    .department-button  {
+    /* background-color: rgba(0, 0, 0, 0); */
+    background: #3F414A;
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 196px;
     height: 62px;
     font-weight: 600;
@@ -147,8 +149,9 @@
     letter-spacing: 0.1em;
     align-items: center;
     text-align: center;
+    margin-left: 10px;
     }
-    
+
     .department h3 {
     font-weight: 600;
     font-size: 48px;
@@ -158,44 +161,7 @@
     color: white;
     padding-top: 90px;
     }
-    
-    #startup {
-    background-color: #73538E;
-    }
-    
-    .game, .robot, .web{
-    display: none;
-    }
-    
-    .startup, .game, .robot, .web {
-    width: 800px;
-    height: 490px;
-    border-radius: 20px;
-    color: white;
-    text-align: left;
-    padding: 20px;
-    }
-    
-    .startup {
-    background: linear-gradient(90deg, #342D3A -2.06%, #795696 107.25%);
-    padding: 100px 50px 20px 50px;
-    }
-    
-    .game {
-    background: linear-gradient(90deg, #302E35 -2.06%, #644B9F 107.25%);
-    padding: 100px 50px 20px 50px;
-    }
-    
-    .robot {
-    background: linear-gradient(90deg, #232132 -2.06%, #513F9B 107.25%);
-    padding: 100px 50px 20px 50px;
-    }
-    
-    .web {
-    background: linear-gradient(90deg, #1F1C25 -2.06%, #371F77 107.25%);
-    padding: 100px 50px 20px 50px;
-    }
-    
+
     .department {
     color: white;
     margin: 10px 0 0 0;
@@ -206,138 +172,16 @@
     font-size: 24px;
     flex-direction: column;
     }
-    
-    .keyword {
-    width: 150px;
-    height: 60px;
-    display: flex;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 24px;
-    margin-top: 10px;
-    animation-name: fade_in;
+
+    .startup, .game, .robot, .web {
+        width: 800px;
+        height: 490px;
+        border-radius: 20px;
+        color: white;
+        text-align: left;
+        background: #3F414A;
+        padding: 100px 50px 20px 50px;
     }
-    
-    @keyframes fade_in_1 {
-    from {
-        opacity: 0;
-        transform: translateY(8em) scale(0);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    }
-    
-    .keyword-group {
-    display: flex;
-    justify-content: space-between;
-    animation: fade_in_1 0.8s ease-out forwards;
-    }
-    
-    /* 웹 */
-    .web #UXUI {
-    background-color: #6F67BC;
-    position: relative;
-    top: -100px;
-    left: 500px;
-    }
-    
-    .web #back-end {
-    background-color: #D0A7E3;
-    position: relative;
-    top: -10px;
-    left: 150px;
-    }
-    
-    .web #front-end {
-    background-color: #4190C9;
-    position: relative;
-    top: 100px;
-    left: 20px;
-    }
-    
-    /* 창업 */
-    .startup #education {
-    background-color: #212942;
-    position: relative;
-    top: -100px;
-    left: 500px;
-    }
-    
-    .startup #mentoring {
-    background-color: #415BC9;
-    position: relative;
-    top: -10px;
-    left: 100px;
-    }
-    
-    .startup #experience {
-    background-color: #42803D;
-    position: relative;
-    top: 90px;
-    }
-    
-    /* 로봇 */
-    .robot #AI {
-    background-color: #212942;
-    position: relative;
-    top: -80px;
-    left: 500px;
-    }
-    
-    .robot #printing {
-    background-color: #C75A42;
-    position: relative;
-    top: -10px;
-    left: 100px;
-    }
-    
-    .robot #robotarm {
-    background-color: #415BC9;
-    position: relative;
-    top: 20px;
-    left: 100px;
-    }
-    
-    .robot #autonomous {
-    background-color: #4190C9;
-    position: relative;
-    top: 100px;
-    left: 30px;
-    }
-    
-    /* 게임 */
-    
-    .game #unity {
-    background-color: #212942;
-    position: relative;
-    top: -100px;
-    left: 500px;
-    }
-    
-    .game #C {
-    background-color: #415BC9;
-    position: relative;
-    top: -10px;
-    left: 70px;
-    }
-    
-    .game #VR {
-    background-color: #C75A42;
-    position: relative;
-    top: 100px;
-    left: -30px;
-    }
-    
-    .msg{
-        white-space: pre-line;
-    }
-    
     
     /* Footer */
     
