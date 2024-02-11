@@ -1,15 +1,16 @@
 import logo from '../img/insight로고.png';
+import insight from '../img/insight로고투명.png';
 
 function Footer() {
     return(
         <>
         <div class="main-footer">
             <div class="lastcontent">
-                <h2 class="toptitle">우리 insight의 4번째 노예를 구합니다</h2>
+                <h2 class="toptitle">Insight의 새로운 눈이 되어주세요!</h2>
                 <button class="joinusbtn" href="#">JOIN US</button>
             </div>
             <footer>
-                <a href="/"><p><img src={logo} alt='icon'/>Insight</p></a>
+                <a href="/"><p><img src={logo} alt='icon'/><img src={insight} alt='insight'/></p></a>
                 <br/>
                 <a target="_blank" href="mailto:insight2022.deu@gmail.com" rel='noopener noreferrer'><p>insight.2022.deu@gmail.com</p></a>
                 <br/>
