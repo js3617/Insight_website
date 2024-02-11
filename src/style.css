@@ -1,10 +1,9 @@
 .App {
   text-align: center;
   background-color: #000000;
-  height: 100vh;
   overflow-y: auto;
+  height: calc(var(--vh, 1vh) * 100);
 }
-
 /* 스크롤 바 */
 /* .App::-webkit-scrollbar {
   display: none;
@@ -41,23 +40,17 @@ body {
   position: fixed;
 }
 
-.navibar a{
+.navibar{
   color: #FFFFFF;
   font-weight: 800;
   text-decoration: none;
   font-size: 24px;
 }
 
-.navibar a img{
+.navibar img{
   width: 40.95px;
   height: 30.2px;
   margin: 10px
-}
-
-.navibar a:hover,
-.navibar a:active,
-.navibar a:focus {
-  color: #FFFFFF;
 }
 
 .nav-item a {
@@ -67,16 +60,11 @@ body {
   height: 60px;
   margin-right:50px;
   padding-top: 15px;
+  text-decoration: none;
 }
 .nav{
   margin-right: 50px;
   position: fixed;
   top: 0;
   right: 0;
-}
-
-.nav .nav-link:hover,
-.nav .nav-link:active,
-.nav .nav-link:focus {
-  color: #A147C7;
 }

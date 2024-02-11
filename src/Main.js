@@ -1,10 +1,12 @@
-import './style.css';
+import  './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useRef } from "react";  
 import logo from './img/insight로고.png';
 import Card from './MainContent/MainCard';
 import Active from './MainContent/MainActive';
 import Footer from './MainContent/MainFooter';
+import Start from './MainContent/MainStart';
 // import Dots from './technology/Dots';
 
 function Main() {
@@ -98,11 +100,20 @@ function Main() {
   };
 }, []);
 
+function setScreenSize() {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+useEffect(() => {
+  setScreenSize();
+});
+
   return (
     <div ref={outerDivRef} className="App">
       <Navi/>
+
       {/* <Dots currentPage={currentPage} /> */}
-      <div className="inner"></div>
+      <div className="inner"><Start/></div>
       <div className="divider"></div>
       <div className="inner"><Card/></div>
       <div className="divider"></div>
@@ -114,24 +125,36 @@ function Main() {
 }
 
 function Navi() {
+  const activeStyle = {
+    color: 'purple',
+  };
+  
   return(
-    <navi id="navbar-all" class="navibar px-3">
-      <a class="navibar-brand" href="#!"><img src={logo} alt="logo"/>insight</a>
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Activity</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Join US</a>
-        </li>
-      </ul>
-    </navi>
+    <div className='navibar'>
+        <a href='/' className='navibar px-3'><img src={logo} alt="logo"/>Insight</a>
+        <ul class="nav">
+          <li class="nav-item">
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/'>
+              Home
+            </NavLink>
+          </li>
+          <li class="nav-item">
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/About'>
+              About
+            </NavLink>
+          </li>
+          <li class="nav-item">
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/Activity'>
+              Activity
+            </NavLink>
+          </li>
+          <li class="nav-item">
+            <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/JoinUs'>
+              Join Us
+            </NavLink>
+          </li>
+        </ul>
+    </div>
   )
 }
 export default Main;
