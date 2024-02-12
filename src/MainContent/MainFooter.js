@@ -10,7 +10,7 @@ function Footer() {
                 <button class="joinusbtn" href="#">JOIN US</button>
             </div>
             <footer>
-                <a href="/"><p><img src={logo} alt='icon'/><img src={insight} alt='insight'/></p></a>
+                <a href="/"><p><img src={logo} alt='icon'/><img className='insight' src={insight} alt='insight'/></p></a>
                 <br/>
                 <a target="_blank" href="mailto:insight2022.deu@gmail.com" rel='noopener noreferrer'><p>insight.2022.deu@gmail.com</p></a>
                 <br/>
