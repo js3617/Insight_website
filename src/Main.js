@@ -10,9 +10,7 @@ import Start from './MainContent/MainStart';
 // import Dots from './technology/Dots';
 
 function Main() {
-  const DIVIDER_HEIGHT = 5;
   const outerDivRef = useRef();
-  // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const wheelHandler = (e) => {
@@ -20,109 +18,63 @@ function Main() {
       const { deltaY } = e;
       const { scrollTop } = outerDivRef.current; // 현재 스크롤 위치
       const pageHeight = window.innerHeight; // 화면의 세로 길이, 100vh와 같습니다.
-
+      let nextPage;
+    
       if (deltaY > 0) {
         // 마우스 휠을 아래로 돌릴 때
-        if (scrollTop >= 0 && scrollTop < pageHeight) {
-          // 현재 1페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight + DIVIDER_HEIGHT,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(2);
-        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-          // 현재 2페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(3);
-        } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
-          // 현재 3페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 3 + DIVIDER_HEIGHT * 3,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(4);
-        } else {
-          // 현재 4페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 3 + DIVIDER_HEIGHT * 3,
-            left: 0,
-            behavior: "smooth",
-          });
-        }
+        nextPage = Math.min(Math.ceil(scrollTop / pageHeight) + 1, 9); // 다음 페이지
       } else {
         // 마우스 휠을 위로 돌릴 때
-        if (scrollTop >= 0 && scrollTop < pageHeight) {
-          // 현재 1페이지
-          outerDivRef.current.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          });
-        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-          // 현재 2페이지
-          outerDivRef.current.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(1);
-        } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
-          // 현재 3페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight + DIVIDER_HEIGHT,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(2);
-        } else {
-          // 현재 4페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
-            left: 0,
-            behavior: "smooth",
-          });
-          //setCurrentPage(3);
-        }
+        nextPage = Math.max(Math.floor(scrollTop / pageHeight) - 1, 0); // 이전 페이지
+      }
+    
+      const targetElement = document.getElementById(`page${nextPage}`);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
     };
+  
+    const outerDivRefCurrent = outerDivRef.current;
+    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+  
+    return () => {
+      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
+  
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
 
-  const outerDivRefCurrent = outerDivRef.current;
-  outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-
-  return () => {
-    outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-  };
-}, []);
-
-function setScreenSize() {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
-}
-useEffect(() => {
-  setScreenSize();
-});
+  useEffect(() => {
+    setScreenSize();
+  });
 
   return (
     <div ref={outerDivRef} className="App">
       <Navi/>
-
-      {/* <Dots currentPage={currentPage} /> */}
-      <div className="inner"><Start/></div>
+      <div id="page1" className="inner"><Start/></div>
       <div className="divider"></div>
-      <div className="inner"><Card/></div>
+      <div id="page2" className="inner"><Card/></div>
       <div className="divider"></div>
-      <div className="inner"><Active/></div>
+      <div id="page3" className="inner"><Active/></div>
       <div className="divider"></div>
-      <div className="inner"><Footer/></div>
+      <div id="page4" className="inner"><Footer/></div>
+      <div className="divider"></div>
+      <div id="page5" className="inner">Page 5 Content</div>
+      <div className="divider"></div>
+      <div id="page6" className="inner">Page 6 Content</div>
+      <div className="divider"></div>
+      <div id="page7" className="inner">Page 7 Content</div>
+      <div className="divider"></div>
+      <div id="page8" className="inner">Page 8 Content</div>
+      <div className="divider"></div>
+      <div id="page9" className="inner">Page 9 Content</div>
     </div>
   );
 }
+
 
 function Navi() {
   const activeStyle = {
@@ -131,7 +83,8 @@ function Navi() {
   
   return(
     <div className='navibar'>
-        <a href='/' className='navibar px-3'><img src={logo} alt="logo"/>Insight</a>
+        <a href='/' className='navibar px-5'>
+          <img src={logo} alt="logo"/>Insight</a>
         <ul class="nav">
           <li class="nav-item">
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/'>
