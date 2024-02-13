@@ -1,10 +1,48 @@
-.Mainimg{
-    width: 1440px;
-    width: auto;
+.Mainimg {
+    max-width: 100%;
+    max-height: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 125px;
+    bottom: 0;
     overflow-y: auto;
-    height: calc(var(--vh, 1vh) * 100);   
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 10%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+.maincontent{
+    position: relative;
+}
+
+.maintext{
+    position: relative;
+    color:white;
+    right: 170px;
+    top: 200px;
+    animation: fadeInUp 2s;
+}
+
+.Need, .insighttext{
+    font-size: 80px;
+}
+.IT{
+    font-size: 23px;
+}
+
+.insighttext {
+    color:#D38AFF;
+}
 
 .toptitle{
     align-items: center;
