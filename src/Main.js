@@ -7,6 +7,8 @@ import Card from './MainContent/MainCard';
 import Active from './MainContent/MainActive';
 import Footer from './MainContent/MainFooter';
 import Start from './MainContent/MainStart';
+import Deu from './MainContent/Maindeu';
+import Insight from './MainContent/MainInsight';
 // import Dots from './technology/Dots';
 
 function Main() {
@@ -56,21 +58,21 @@ function Main() {
       <Navi/>
       <div id="page1" className="inner"><Start/></div>
       <div className="divider"></div>
-      <div id="page2" className="inner"><Card/></div>
+      <div id="page2" className="inner"><Deu/></div>
       <div className="divider"></div>
-      <div id="page3" className="inner"><Active/></div>
+      <div id="page3" className="inner"><Insight/></div>
       <div className="divider"></div>
-      <div id="page4" className="inner"><Footer/></div>
+      <div id="page4" className="inner"></div>
       <div className="divider"></div>
       <div id="page5" className="inner">Page 5 Content</div>
       <div className="divider"></div>
       <div id="page6" className="inner">Page 6 Content</div>
       <div className="divider"></div>
-      <div id="page7" className="inner">Page 7 Content</div>
+      <div id="page7" className="inner"><Card/></div>
       <div className="divider"></div>
-      <div id="page8" className="inner">Page 8 Content</div>
+      <div id="page8" className="inner"><Active/></div>
       <div className="divider"></div>
-      <div id="page9" className="inner">Page 9 Content</div>
+      <div id="page9" className="inner"><Footer/></div>
     </div>
   );
 }
@@ -85,23 +87,23 @@ function Navi() {
     <div className='navibar'>
         <a href='/' className='navibar px-5'>
           <img src={logo} alt="logo"/>Insight</a>
-        <ul class="nav">
-          <li class="nav-item">
+        <ul className="nav">
+          <li className="nav-item">
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/'>
               Home
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/About'>
               About
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/Activity'>
               Activity
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to='/JoinUs'>
               Join Us
             </NavLink>
