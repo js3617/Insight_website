@@ -54,8 +54,9 @@ function Main() {
   });
 
   return (
-    <div ref={outerDivRef} className="App">
+      <>
       <Navi/>
+    <div ref={outerDivRef} className="App">
       <div id="page1" className="inner"><Start/></div>
       <div className="divider"></div>
       <div id="page2" className="inner"><Deu/></div>
@@ -74,6 +75,7 @@ function Main() {
       <div className="divider"></div>
       <div id="page9" className="inner"><Footer/></div>
     </div>
+    </>
   );
 }
 
