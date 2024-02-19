@@ -1,7 +1,6 @@
 import  './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useRef } from "react";  
 import logo from './img/insight로고.png';
 import Card from './MainContent/MainCard';
 import Active from './MainContent/MainActive';
@@ -11,71 +10,94 @@ import Deu from './MainContent/Maindeu';
 import Insight from './MainContent/MainInsight';
 // import Dots from './technology/Dots';
 
-function Main() {
-  const outerDivRef = useRef();
+import { useEffect, useRef } from 'react';
+
+function Slider() {
+  let slides = [];
+  let btns = [];
+  let count = 0;
+  let current = 0;
+  let touchstart = 0;
+  let animationState = false;
+  const pagesRef = useRef(null);
+  const paginationRef = useRef(null);
 
   useEffect(() => {
-    const wheelHandler = (e) => {
-      e.preventDefault();
-      const { deltaY } = e;
-      const { scrollTop } = outerDivRef.current; // 현재 스크롤 위치
-      const pageHeight = window.innerHeight; // 화면의 세로 길이, 100vh와 같습니다.
-      let nextPage;
-    
-      if (deltaY > 0) {
-        // 마우스 휠을 아래로 돌릴 때
-        nextPage = Math.min(Math.ceil(scrollTop / pageHeight) + 1, 9); // 다음 페이지
-      } else {
-        // 마우스 휠을 위로 돌릴 때
-        nextPage = Math.max(Math.floor(scrollTop / pageHeight) - 1, 0); // 이전 페이지
-      }
-    
-      const targetElement = document.getElementById(`page${nextPage}`);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-  
-    const outerDivRefCurrent = outerDivRef.current;
-    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-  
-    return () => {
-      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-    };
+    init();
   }, []);
-  
-  function setScreenSize() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+  const init = () => {
+    slides = pagesRef.current?.children;
+    count = slides?.length;
+    if (slides && count) {
+      for(let i = 0; i < count; i++) {
+        slides[i].style.bottom = -(i * 100) + '%';
+        let btn = document.createElement('li');
+        btn.dataset.slide = i;
+        btn.addEventListener('click', btnClick)
+        btns.push(btn);
+        paginationRef.current.appendChild(btn);
+      }
+      btns[0].classList.add('active');
+    }
   }
 
-  useEffect(() => {
-    setScreenSize();
-  });
+  const gotoNum = (index) => {
+    if((index !== current) && !animationState) {
+      animationState = true;
+      setTimeout(() => animationState = false, 500);
+      btns[current].classList.remove('active');
+      current = index;
+      btns[current].classList.add('active');
+      for(let i = 0; i < count; i++) {
+        slides[i].style.bottom = `${(current - i) * 100}%`;
+      }
+    }
+  }
+
+  const gotoNext = () => current < count - 1 ? gotoNum(current + 1) : false;
+  const gotoPrev = () => current > 0 ? gotoNum(current - 1) : false;
+
+  const btnClick = (e) => gotoNum(parseInt(e.target.dataset.slide));
+
+  const handleTouchStart = (e) => touchstart = e.touches[0].screenY;
+  const handleTouchEnd = (e) => touchstart < e.changedTouches[0].screenY ? gotoPrev() : gotoNext();
+
+  const handleMouseWheel = (e) => e.deltaY < 0 ? gotoPrev() : gotoNext();
 
   return (
-      <>
-      <Navi/>
-    <div ref={outerDivRef} className="App">
-      <div id="page1" className="inner"><Start/></div>
-      <div className="divider"></div>
-      <div id="page2" className="inner"><Deu/></div>
-      <div className="divider"></div>
-      <div id="page3" className="inner"><Insight/></div>
-      <div className="divider"></div>
-      <div id="page4" className="inner"></div>
-      <div className="divider"></div>
-      <div id="page5" className="inner">Page 5 Content</div>
-      <div className="divider"></div>
-      <div id="page6" className="inner">Page 6 Content</div>
-      <div className="divider"></div>
-      <div id="page7" className="inner"><Card/></div>
-      <div className="divider"></div>
-      <div id="page8" className="inner"><Active/></div>
-      <div className="divider"></div>
-      <div id="page9" className="inner"><Footer/></div>
-    </div>
+    <>
+      <div className="pages" ref={pagesRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onWheel={handleMouseWheel}>
+        <div className="first page">
+            <Start />
+          </div>
+          <div className="second page">
+            <Deu />
+          </div>
+          <div className="third page">
+            <Insight />
+          </div>
+          <div className="four page">
+            <Card />
+          </div>
+          <div className="five page">
+            <Active />
+          </div>
+          <div className="six page">
+            <Footer />
+          </div>
+      </div>
+      <ul className="pagination" ref={paginationRef}></ul>
     </>
+  );
+}
+
+function Main() {
+  return (
+    <div className="App">
+      <Navi />
+      <Slider />
+    </div>
   );
 }
 
