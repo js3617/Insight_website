@@ -8,6 +8,7 @@ import Footer from './MainContent/MainFooter';
 import Start from './MainContent/MainStart';
 import Deu from './MainContent/Maindeu';
 import Insight from './MainContent/MainInsight';
+import ScrollLine1 from './MainContent/MainScroll1';
 // import Dots from './technology/Dots';
 
 import { useEffect, useRef } from 'react';
@@ -24,6 +25,7 @@ function Slider() {
 
   useEffect(() => {
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const init = () => {
@@ -76,6 +78,9 @@ function Slider() {
           </div>
           <div className="third page">
             <Insight />
+          </div>
+          <div className="third page">
+            <ScrollLine1 />
           </div>
           <div className="four page">
             <Card />
