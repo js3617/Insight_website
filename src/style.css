@@ -34,7 +34,7 @@ html, body {
 bottom: 0;
 }
 
-.pagination {
+/* .pagination {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -53,7 +53,7 @@ bottom: 0;
 
 .pagination>li.active {
   background: #ffffff;
-}
+} */
 
 
 .App {
@@ -63,9 +63,9 @@ bottom: 0;
   height: calc(var(--vh, 1vh) * 100);
 }
 /* 스크롤 바 */
-/* .App::-webkit-scrollbar {
+.App::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .navi{
   position: fixed;
